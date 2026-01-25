@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gray-100">
 
@@ -13,7 +14,7 @@
             Login
         </h1>
 
-        <form action="{{ route('login') }}" method="POST" class="space-y-5">
+        <form action="{{ route('login') }}" x-data="{open: false}" method="POST" class="space-y-5">
             @csrf
             <!-- Email -->
             <div>
@@ -33,16 +34,53 @@
             </div>
 
             <!-- Password -->
-            <div>
+            <div x-data="{ open: false }">
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     Password
                 </label>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="••••••••"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
+
+                <!-- INPUT WRAPPER -->
+                <div class="relative">
+                    <input
+                        :type="open ? 'text' : 'password'"
+                        name="password"
+                        placeholder="••••••••"
+                        class="w-full rounded-lg border border-gray-300 px-4 pr-10 py-2
+                            focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                    <button
+                        type="button"
+                        @click="open = !open"
+                        class="absolute inset-y-0 right-0 flex items-center pr-3
+                            text-gray-500 hover:text-gray-700">
+                        <!-- Eye Open -->
+                        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            stroke-width="2" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round"
+                            class="w-5 h-5">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+
+                        <!-- Eye Closed -->
+                        <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            stroke-width="2" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round"
+                            class="w-5 h-5">
+                            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.77 21.77 0 0 1 5.06-5.94"/>
+                            <path d="M1 1l22 22"/>
+                        </svg>
+                    </button>
+                </div>
+
                 @error('password')
                     <p class="text-sm text-red-600 mt-1">
                         {{ $message }}
