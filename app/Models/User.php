@@ -47,8 +47,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function siswa()
+    public function student()
     {
-        return $this->hasOne(Siswa::class);
+        return $this->hasOne(Student::class);
     }
 }

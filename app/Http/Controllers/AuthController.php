@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -52,6 +53,8 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'nis' => 'required|integer|unique:students,nis|min:10',
+            'class' => 'required|string|max:50',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
@@ -61,9 +64,14 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
+
+        $user->student()->create([
+            'nis' => $validated['nis'],
+            'class' => $validated['class'],
+        ]);
         Auth::login($user);
         $request->session()->regenerate();
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function logout(Request $request): RedirectResponse

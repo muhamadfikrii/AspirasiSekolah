@@ -77,9 +77,8 @@
                                     <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" name="name"
-                                    value="{{ old('name') }}"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                    placeholder="Masukkan nama lengkap">
+                                    placeholder="Masukkan nama lengkap" value="{{ auth()->user()->name }}" readonly>
                                 @error('name')
                                     <p class="text-red-500 text-sm mt-1 flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,7 +96,7 @@
                                     <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" name="nis"
-                                    value="{{ old('nis') }}"
+                                    value="{{ auth()->user()->student->nis ?? 'nis tidak ada' }}"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                                     placeholder="Contoh: 1234567890">
                                 @error('nis')
@@ -117,7 +116,7 @@
                                     <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" name="class"
-                                    value="{{ old('class') }}"
+                                    value="{{ auth()->user()->student->class ?? 'kelas tidak ada' }}"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                                     placeholder="Contoh: XI PPLG 1">
                                 @error('class')
