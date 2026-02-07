@@ -95,7 +95,7 @@
                                     NIS (Nomor Induk Siswa)
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input type="text" name="nis"
+                                <input type="text" name="nis" readonly
                                     value="{{ auth()->user()->student->nis ?? 'nis tidak ada' }}"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                                     placeholder="Contoh: 1234567890">
@@ -115,7 +115,7 @@
                                     Kelas
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input type="text" name="class"
+                                <input type="text" name="class" readonly
                                     value="{{ auth()->user()->student->class ?? 'kelas tidak ada' }}"
                                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                                     placeholder="Contoh: XI PPLG 1">

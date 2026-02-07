@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use App\Models\Aspiration;
 use Illuminate\Http\Request;
 
@@ -85,7 +86,7 @@ class DashboardController extends Controller
             'content' => 'required|string|max:1000',
         ]);
 
-        \App\Models\Feedback::create([
+        Feedback::create([
             'aspiration_id' => $request->aspiration_id,
             'user_id' => $request->user_id,
             'content' => $request->content,
