@@ -35,9 +35,6 @@ class AspirationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'nis' => 'required|integer|unique:students,nis|min:10',
-            'class' => 'required|string|max:50',
             'category_id' => 'required|exists:categories,id',
             'location' => 'required|string',
             'description' => 'required|string',
@@ -57,12 +54,6 @@ class AspirationController extends Controller
             'image' => $imagePath,
         ]);
 
-        Student::create([
-            'user_id' => auth()->id(),
-            'nis' => $validated['nis'],
-            'class' => $validated['class'],
-        ]);
-        
         return redirect()->back()->with('success', 'Pengaduan berhasil dikirim');
     }
 

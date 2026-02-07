@@ -18,6 +18,7 @@
                         <th class="px-6 py-3">Nama Siswa</th>
                         <th class="px-6 py-3">Judul</th>
                         <th class="px-6 py-3">Aspirasi</th>
+                        <th class="px-6 py-3">Foto</th>
                         <th class="px-6 py-3">Status</th>
                         <th class="px-6 py-3">Aksi</th>
                         <th class="px-6 py-3">Feedback</th>
@@ -37,6 +38,15 @@
 
                             <td class="px-6 py-4 max-w-md truncate">
                                 {{ $aspiration->description }}
+                            </td>
+
+                            <td class="px-6 py-4 max-w-md truncate">
+                                @if ($aspiration->image)
+                                    <img class="w-14 h-16" src="{{ asset('storage/' . $aspiration->image) }}" alt="">
+                                @else
+                                    <p class="text-gray-500">Foto tidak ada</p>
+                                @endif
+
                             </td>
 
                             <td class="px-6 py-4">

@@ -11,6 +11,11 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
+
+    public function index()
+    {
+        return view('auth.login');
+    }
     public function login(Request $request): RedirectResponse
     {
         $request->validate([
